@@ -7,4 +7,5 @@ interface Project {
 export const PROJECTS: Project[] = [
   { name: "Rotating Cube", url: "rotating-cube", id: "rotating_cube" },
   { name: "Bouncing Sphere", url: "bouncing-sphere", id: "bouncing_sphere" },
+  { name: "Solar System", url: "solar-system", id: "solar_system" },
 ];
