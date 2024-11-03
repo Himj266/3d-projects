@@ -1,18 +1,19 @@
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 
 //components
-import { Sphere } from "@react-three/drei";
+import { Sphere, Line } from "@react-three/drei";
 
 //hooks
 import { useFrame, useLoader } from "@react-three/fiber";
 
+//utils
 import { TextureLoader } from "three";
+import { getLinePoints } from "../utils/getLinePoints";
 
 //types
 import type { Mesh } from "three";
 
 interface Props {
-  position: [number, number, number];
   radius: number;
   oribtRotationSpeed: number;
   size: number;
@@ -20,7 +21,6 @@ interface Props {
 }
 
 export const Planet = ({
-  position,
   radius,
   oribtRotationSpeed,
   size,
@@ -29,6 +29,8 @@ export const Planet = ({
   const ref = useRef<Mesh>(null);
 
   const planetTexture = useLoader(TextureLoader, textureFile);
+
+  const points = useMemo(() => getLinePoints(radius), [radius]);
 
   useFrame((state) => {
     if (ref.current) {
@@ -41,8 +43,11 @@ export const Planet = ({
   });
 
   return (
-    <Sphere ref={ref} args={[size]}>
-      <meshStandardMaterial map={planetTexture} />
-    </Sphere>
+    <>
+      <Line points={points} />
+      <Sphere ref={ref} args={[size]}>
+        <meshStandardMaterial map={planetTexture} />
+      </Sphere>
+    </>
   );
 };

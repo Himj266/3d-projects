@@ -11,23 +11,14 @@ import { PLANETS } from "./constants/planets";
 
 export default function Page() {
   return (
-    <div className="h-screen w-screen bg-slate-900">
+    <div className="h-screen w-screen bg-black">
       <Canvas>
         <OrbitControls />
-        <gridHelper />
-        <ambientLight intensity={1} />
+        <ambientLight intensity={0.3} />
         <Sun />
         {PLANETS.map(
-          ({
-            position,
-            id,
-            radiusRatio,
-            oribtRotationSpeedRatio,
-            size,
-            textureFile,
-          }) => (
+          ({ id, radiusRatio, oribtRotationSpeedRatio, size, textureFile }) => (
             <Planet
-              position={position}
               key={id}
               radius={radiusRatio}
               oribtRotationSpeed={oribtRotationSpeedRatio}

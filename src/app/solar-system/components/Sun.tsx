@@ -26,8 +26,15 @@ export const Sun = () => {
   });
 
   return (
-    <Sphere ref={ref} args={[5 * SIZE_RATIO_MULTIPLIER]}>
-      <meshStandardMaterial map={sunTexture} />
-    </Sphere>
+    <>
+      <Sphere ref={ref} args={[30 * SIZE_RATIO_MULTIPLIER]}>
+        <meshStandardMaterial
+          map={sunTexture}
+          emissiveMap={sunTexture}
+          emissiveIntensity={100}
+        />
+      </Sphere>
+      <pointLight position={[0, 0, 0]} intensity={1000} />
+    </>
   );
 };
